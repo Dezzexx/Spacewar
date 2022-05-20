@@ -53,4 +53,14 @@ public class PlayerController : MonoBehaviour
             b.GetComponent<Rigidbody>().AddForce(Vector3.forward * bulletSpeed, ForceMode.Impulse);
         }
     }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            Destroy(other.gameObject);
+            Destroy(gameObject);
+            Debug.Log("Game Over");
+        }
+    }
 }

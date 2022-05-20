@@ -6,6 +6,7 @@ public class EnemyMove : MonoBehaviour
 {
     private Rigidbody rb;
     public float speed;
+    private float zBound = -13.0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,5 +17,9 @@ public class EnemyMove : MonoBehaviour
     void FixedUpdate()
     {
         rb.AddForce(Vector3.back * speed, ForceMode.Impulse);
+        if (transform.position.z < zBound)
+        {
+            Destroy(gameObject);
+        }
     }
 }

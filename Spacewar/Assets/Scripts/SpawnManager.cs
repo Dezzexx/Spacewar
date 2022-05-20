@@ -10,10 +10,16 @@ public class SpawnManager : MonoBehaviour
     private float xRange = 15.0f;
     private float zRange = 17.0f;
     private float yRange = 1.0f;
+
     // Start is called before the first frame update
     void Start()
     {
         InvokeRepeating("enemySpawner", startSpawn, spawnDelay);
+    }
+
+    void FixedUpdate()
+    {
+
     }
 
     void enemySpawner()
