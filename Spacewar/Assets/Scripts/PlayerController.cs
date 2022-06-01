@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private float speed = 10.0f;
-    private float zBound = 7.0f;
+    private float zBound = 6.5f;
     public float bulletSpeed = 35.0f;
     public GameObject bulletPrefab;
 
@@ -15,12 +15,16 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
         Movement();
+    }
+
+    void Update()
+    {
         Shooting();
     }
+
 
     private void Movement()
     {
@@ -30,7 +34,7 @@ public class PlayerController : MonoBehaviour
 
         Vector3 movement = new Vector3(horizontal, 0.0f, vertical);
 
-        transform.Translate(movement * speed * Time.fixedDeltaTime);
+        transform.Translate(movement * speed * Time.deltaTime);
 
         // Z bound.
         if (transform.position.z < -zBound)

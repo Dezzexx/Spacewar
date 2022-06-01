@@ -4,22 +4,17 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    // Start is called before the first frame update
+    private float zBound = 20.0f;
+
     void Start()
     {
         
     }
 
-    // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        
-    }
-
-    private void OnTriggerEnter(Collider other) {
-        if (other.gameObject.CompareTag("Enemy"))
+        if (transform.position.z > zBound)
         {
-            Destroy(other.gameObject);
             Destroy(gameObject);
         }
     }
