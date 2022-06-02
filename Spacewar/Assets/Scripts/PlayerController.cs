@@ -8,11 +8,11 @@ public class PlayerController : MonoBehaviour
     private float zBound = 6.5f;
     public float bulletSpeed = 35.0f;
     public GameObject bulletPrefab;
+    public GameManager gameManager;
 
-    // Start is called before the first frame update
     void Start()
     {
-
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     void FixedUpdate()
@@ -64,7 +64,7 @@ public class PlayerController : MonoBehaviour
         {
             Destroy(other.gameObject);
             Destroy(gameObject);
-            Debug.Log("Game Over");
+            gameManager.GameOver();
         }
     }
 }

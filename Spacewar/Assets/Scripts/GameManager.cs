@@ -4,12 +4,15 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.PlayerLoop;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    bool isGameActive;
+    public bool isGameActive;
     private int score;
     public TextMeshProUGUI scoreText;
+    public Button restartButton;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,8 +28,22 @@ public class GameManager : MonoBehaviour
 
     public void UpdateScore(int scoreToAdd)
     {
-        score += scoreToAdd;
-        scoreText.text = "Score: " + score;
-        Debug.Log($"Score = {scoreToAdd}");
+        if (isGameActive)
+        {
+            score += scoreToAdd;
+            scoreText.text = "Score: " + score;
+        }
+    }
+
+    public void GameOver()
+    {
+        restartButton.gameObject.SetActive(true);
+        isGameActive = false;
+    }
+
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        Start();
     }
 }

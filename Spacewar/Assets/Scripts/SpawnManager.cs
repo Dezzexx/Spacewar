@@ -15,6 +15,7 @@ public class SpawnManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         InvokeRepeating("enemySpawner", startSpawn, spawnDelay);
     }
 
@@ -25,8 +26,11 @@ public class SpawnManager : MonoBehaviour
 
     void enemySpawner()
     {
-        int randomEnemy = Random.Range(0, enemyPrefab.Length);
-        Vector3 position = new Vector3(Random.Range(-xRange, xRange), yRange, zRange);
-        Instantiate(enemyPrefab[randomEnemy], position, transform.rotation);
+        if (gameManager.isGameActive)
+        {
+            int randomEnemy = Random.Range(0, enemyPrefab.Length);
+            Vector3 position = new Vector3(Random.Range(-xRange, xRange), yRange, zRange);
+            Instantiate(enemyPrefab[randomEnemy], position, transform.rotation);
+        }
     }
 }
