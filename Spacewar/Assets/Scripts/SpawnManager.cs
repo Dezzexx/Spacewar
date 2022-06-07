@@ -8,7 +8,7 @@ public class SpawnManager : MonoBehaviour
     public GameManager gameManager;
     private float startSpawn = 3.0f;
     private float spawnDelay = 2.0f;
-    private float xRange = 20.0f;
+    private float xRange = 12.0f;
     private float zRange = 17.0f;
     private float yRange = 1.0f;
 

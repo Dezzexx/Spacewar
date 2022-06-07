@@ -12,7 +12,9 @@ public class GameManager : MonoBehaviour
     public bool isGameActive;
     private int score;
     public TextMeshProUGUI scoreText;
-    public Button restartButton;
+    [SerializeField] Button restartButton;
+    [SerializeField] Button exitButton;
+    [SerializeField] Button resumeButton;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,7 +25,7 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-
+        PauseGame();
     }
 
     public void UpdateScore(int scoreToAdd)
@@ -38,6 +40,7 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         restartButton.gameObject.SetActive(true);
+        exitButton.gameObject.SetActive(true);
         isGameActive = false;
     }
 
@@ -45,5 +48,32 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         Start();
+        Time.timeScale = 1;
+    }
+
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
+
+    public void PauseGame()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            restartButton.gameObject.SetActive(true);
+            exitButton.gameObject.SetActive(true);
+            resumeButton.gameObject.SetActive(true);
+            isGameActive = false;
+            Time.timeScale = 0;
+        }
+    }
+
+    public void ResumeGame()
+    {
+        isGameActive = true;
+        restartButton.gameObject.SetActive(false);
+        exitButton.gameObject.SetActive(false);
+        resumeButton.gameObject.SetActive(false);
+        Time.timeScale = 1;
     }
 }
