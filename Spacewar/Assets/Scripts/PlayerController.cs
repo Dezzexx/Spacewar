@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    private float speed = 10.0f;
-    private float zBound = 6.5f;
+    [SerializeField] float speed = 10.0f;
+    [SerializeField] float zBound = 6.5f;
     public float bulletSpeed = 35.0f;
+    
     public GameObject bulletPrefab;
     public GameManager gameManager;
 
@@ -34,7 +35,7 @@ public class PlayerController : MonoBehaviour
 
         Vector3 movement = new Vector3(horizontal, 0.0f, vertical);
 
-        transform.Translate(movement * speed * Time.deltaTime);
+        transform.Translate(movement * speed * Time.fixedDeltaTime);
 
         // Z bound.
         if (transform.position.z < -zBound)
