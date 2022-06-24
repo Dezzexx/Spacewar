@@ -4,12 +4,7 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    private float zBound = 20.0f;
-
-    void Start()
-    {
-        
-    }
+    [SerializeField] float zBound = 20.0f;
 
     void FixedUpdate()
     {
