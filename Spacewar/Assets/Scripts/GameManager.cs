@@ -12,10 +12,11 @@ public class GameManager : MonoBehaviour
     public bool isGameActive;
     private int score;
     public TextMeshProUGUI scoreText;
+    
     [SerializeField] Button restartButton;
     [SerializeField] Button exitButton;
     [SerializeField] Button resumeButton;
-    // Start is called before the first frame update
+    
     void Start()
     {
         isGameActive = true;
@@ -23,7 +24,7 @@ public class GameManager : MonoBehaviour
         UpdateScore(0);
     }
 
-    void Update()
+    void FixedUpdate()
     {
         PauseGame();
     }
