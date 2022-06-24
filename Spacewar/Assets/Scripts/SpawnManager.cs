@@ -6,22 +6,18 @@ public class SpawnManager : MonoBehaviour
 {
     public GameObject[] enemyPrefab;
     public GameManager gameManager;
-    private float startSpawn = 3.0f;
-    private float spawnDelay = 2.0f;
-    private float xRange = 12.0f;
-    private float zRange = 17.0f;
-    private float yRange = 1.0f;
+    
+    [SerializeField] float startSpawn = 3.0f;
+    [SerializeField] float spawnDelay = 2.0f;
+    
+    [SerializeField] float xRange = 12.0f;
+    [SerializeField] float zRange = 17.0f;
+    [SerializeField] float yRange = 1.0f;
 
-    // Start is called before the first frame update
     void Start()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         InvokeRepeating("enemySpawner", startSpawn, spawnDelay);
-    }
-
-    void FixedUpdate()
-    {
-
     }
 
     void enemySpawner()
